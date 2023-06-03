@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/04 00:58:48 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/04 01:13:30 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ enum arg
     MYFORK
     ,NOTMYFORK
     ,EAT
+    ,SLEEP
+    ,THINK
     
 };
 

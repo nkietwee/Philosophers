@@ -6,22 +6,25 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/04 01:01:53 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/04 01:18:27 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// void    ft_sleep()
-// {
-    
-// }
 
 // void    ft_think()
 // {
     
 
 // }
+
+int    ft_sleep(t_philo *philo)
+{
+    time_to_action(philo->data->time_sleep);
+    ft_print(philo->id, philo->start_time, SLEEP);
+    return(EXIT_SUCCESS);
+}
 
 int    ft_take_and_drop(t_philo *philo, pthread_mutex_t *fork, int mode)
 {
@@ -77,7 +80,8 @@ void    *routine(void *arg)
     {
         if (ft_philoeat(&main->philo[main->i], main->fork) == EXIT_FAILURE)
             break;
-        // ft_sleep();
+        if (ft_sleep(&main->philo[main->i]) == EXIT_FAILURE)
+            break;
         // ft_think();
     }
     
@@ -87,7 +91,6 @@ void    *routine(void *arg)
 int ft_crttheard(t_main *main)
 {
     main->i = 0;   
-    // printf("nbr_philo_crt : %d\n", main->data->nbr_philo);
     while (main->i < main->data.nbr_philo)
     {
          
