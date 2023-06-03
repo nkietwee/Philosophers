@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/03 18:04:28 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/04 01:01:53 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int    ft_take_and_drop(t_philo *philo, pthread_mutex_t *fork, int mode)
         if (philo->check_state == 1 || pthread_mutex_lock(&fork[philo->myfork]) != 0) // 0 success
         {
             // printf("found\n");
-            // exit (0);
             return(EXIT_FAILURE);
         }
         ft_print(philo->id,philo->start_time , MYFORK);
@@ -60,12 +59,10 @@ int ft_philoeat(t_philo *philo, pthread_mutex_t *fork)
         // exit(0);
         return(EXIT_FAILURE);
     }
-    philo->nbr_ate++;
+    philo->nbr_ate++; // in case It have amount of eat
     ft_print(philo->id, philo->start_time, EAT);
+    time_to_action(philo->data->time_eat);
     ft_take_and_drop(philo, fork, DROP);
-    // exit(0);
-    // printf("nbr_ate : %d\n" , philo->nbr_ate);
-    // ft_print(1, MYFORK);
     return (EXIT_SUCCESS);    
 }
 
@@ -80,7 +77,6 @@ void    *routine(void *arg)
     {
         if (ft_philoeat(&main->philo[main->i], main->fork) == EXIT_FAILURE)
             break;
-        exit(0);
         // ft_sleep();
         // ft_think();
     }
@@ -90,7 +86,7 @@ void    *routine(void *arg)
 
 int ft_crttheard(t_main *main)
 {
-    // main->i = 0;   
+    main->i = 0;   
     // printf("nbr_philo_crt : %d\n", main->data->nbr_philo);
     while (main->i < main->data.nbr_philo)
     {
@@ -98,12 +94,12 @@ int ft_crttheard(t_main *main)
         // pthread_create(&main->philo[main->i].th, NULL, &routine, main);
         if (pthread_create(&main->philo[main->i].th, NULL, &routine, main) == EXIT_FAILURE)
             return (EXIT_FAILURE);
-        // exit(0);
         // pthread_join(main->philo[i].th, NULL);
-        // if (pthread_detach(main->philo[main->i].th) == EXIT_FAILURE)
-        //     return (EXIT_FAILURE);
-        // main->i += 2;
-        // if (main->i >= main->data->nbr_philo)
+        if (pthread_detach(main->philo[main->i].th) == EXIT_FAILURE)
+            return (EXIT_FAILURE);
+        // main->i += 2; // for even nbr
+        // break;
+        // if (main->i >= main->data.nbr_philo) // start odd number
         //     main->i = 1;
     }
     
