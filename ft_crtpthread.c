@@ -6,18 +6,18 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/04 01:18:27 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/04 01:22:50 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-// void    ft_think()
-// {
-    
-
-// }
+int    ft_think(t_philo *philo)
+{
+    ft_print(philo->id, philo->start_time, THINK);
+    return (EXIT_SUCCESS);
+}
 
 int    ft_sleep(t_philo *philo)
 {
@@ -82,7 +82,8 @@ void    *routine(void *arg)
             break;
         if (ft_sleep(&main->philo[main->i]) == EXIT_FAILURE)
             break;
-        // ft_think();
+        if (ft_think(&main->philo[main->i]) == EXIT_FAILURE)
+            break;
     }
     
     return (NULL);
