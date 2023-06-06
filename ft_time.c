@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:48:39 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/04 00:58:24 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:52:04 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@ long    current_time(void)
 
 long    time_to_action(long time_action)
 {
-    long    start_time;
+    long    start;
 
-    start_time = current_time();   
-    while (current_time() - start_time < time_action)
-        usleep(180);
+    start = current_time();   
+    while (current_time() -  start < time_action) // check_die
+        usleep(50);
+    // usleep(time_action); It cann't use in case It die 
     return(EXIT_SUCCESS);
-}   
+}
+
+long    time_diff(long time)
+{
+    return(time - current_time());    
+}

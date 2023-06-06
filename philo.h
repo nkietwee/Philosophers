@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/04 01:13:30 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:52:37 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define PHILO_H
 
 # include <stdio.h>
-# include <unistd.h>
+# include <unistd.h> //usleep
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-
+#include "color.h"
 //enum is group data of constant
 enum error
 {
@@ -33,7 +33,7 @@ enum arg
     ,EAT
     ,SLEEP
     ,THINK
-    
+    ,DIE 
 };
 
 enum fork
@@ -45,11 +45,12 @@ enum fork
 
 typedef struct  s_data
 {
-    int nbr_philo;
-    int time_die;
-    int time_eat;
-    int time_sleep;
-    int nbr_eat;
+    int     nbr_philo;
+    int     time_die;
+    int     time_eat;
+    int     time_sleep;
+    int     nbr_eat;
+    // long    start_time;
 
 }   t_data ;
 
@@ -60,7 +61,9 @@ typedef struct s_philo
     int         notmyfork;
     int         nbr_ate;
     int         check_state;
-    long        start_time;
+    long        last_meal; //??
+    long        start_time; //??
+    
     t_data      *data;
     pthread_t   th;  // t_id 1 : 1 philo
 
@@ -68,7 +71,8 @@ typedef struct s_philo
 
 typedef struct s_main
 {
-    int             i;
+    int             id_cur;
+    // long        start_time;
     t_data          data;
     t_philo         *philo;
     pthread_mutex_t *fork; // fork 1 : 1 philo
@@ -100,5 +104,6 @@ void    ft_print(int id, long time, int mode);
 
 long    current_time(void);
 long    time_to_action(long time_action);
+long    time_diff(long time);
 
 #endif

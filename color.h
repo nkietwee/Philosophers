@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:37:18 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/27 15:38:08 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:13:09 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 #define WHT "\e[0;37m"
 
 //Regular bold text
-#define BBLK "\e[1;30m"
-#define BRED "\e[1;31m"
-#define BGRN "\e[1;32m"
-#define BYEL "\e[1;33m"
-#define BBLU "\e[1;34m"
+#define BBLK "\e[1;30m" 
+#define BRED "\e[1;31m" 
+#define BGRN "\e[1;32m" 
+#define BYEL "\e[1;33m" 
+#define BBLU "\e[1;34m" 
 #define BMAG "\e[1;35m"
-#define BCYN "\e[1;36m"
+#define BCYN "\e[1;36m" 
 #define BWHT "\e[1;37m"
 
 //Regular underline text

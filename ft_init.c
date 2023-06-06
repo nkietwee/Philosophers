@@ -85,6 +85,6 @@ int ft_init(t_main *main, int ac, char **av)
     main->fork =  ft_initfork(main->data.nbr_philo);
     if (!main->fork)
         return (EXIT_FAILURE);
-    ft_crttheard(main);
+    // ft_crttheard(main);
     return(EXIT_SUCCESS);
 }
