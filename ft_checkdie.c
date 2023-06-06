@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:41:15 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/06 17:58:48 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:07:06 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,21 @@ int ft_checkdie (t_main *main)
     {
         if (ft_check_nbr_ate(main) == EXIT_SUCCESS)
         {
+            // printf("check_nbr_ate\n");
             ft_print(main->philo[i].id, main->philo->start_time , DIE);
-            // main->philo[i].check_state = 1;
+            main->philo[i].check_state = 1;
             return (EXIT_SUCCESS);
         }
+        // printf("last_meal : %lu\n", main->philo[i].last_meal);
+        // printf("time_diff : %lu\n", time_diff(main->philo[i].last_meal));
+        // printf("time_die : %d\n", main->data.time_die);
         if (time_diff(main->philo[i].last_meal) > main->data.time_die)
         {
+            // printf("time_diff\n");
             ft_print(main->philo[i].id, main->philo->start_time , DIE);
-            // main->philo[i].check_state = 1;
+            main->philo[i].check_state = 1;
             return (EXIT_SUCCESS);
         }
     }    
-    //clearmutex
-    //free
     return(EXIT_SUCCESS);
 }

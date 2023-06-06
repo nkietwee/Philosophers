@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:04 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/06 19:17:53 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/07 03:45:42 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ int main(int ac, char **av)
           return (EXIT_FAILURE);
      if (ft_checkdie(&main) == EXIT_FAILURE)
           return (EXIT_FAILURE);
+    //clearmutex
+    //free
    return (EXIT_SUCCESS);
 }
