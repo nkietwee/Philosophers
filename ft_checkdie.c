@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:41:15 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/06 17:54:46 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:58:48 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ int ft_checkdie (t_main *main)
     {
         if (ft_check_nbr_ate(main) == EXIT_SUCCESS)
         {
-            main->philo[i].check_state = 1;
+            ft_print(main->philo[i].id, main->philo->start_time , DIE);
+            // main->philo[i].check_state = 1;
             return (EXIT_SUCCESS);
         }
         if (time_diff(main->philo[i].last_meal) > main->data.time_die)
         {
-            main->philo[i].check_state = 1;
+            ft_print(main->philo[i].id, main->philo->start_time , DIE);
+            // main->philo[i].check_state = 1;
             return (EXIT_SUCCESS);
         }
     }    

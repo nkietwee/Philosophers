@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 00:07:33 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/04 15:12:09 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:46:34 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    ft_print(int id, long start_time, int mode)
     long    time;
     
     time = current_time() - start_time; 
-    printf(BBLU"%ld ms " reset,time);
+    printf(BBLU"%ld ms " reset, time);
     // printf(BWHT" ms   " reset);
     if (mode == MYFORK)
         printf(BWHT"Philo[%d]" GRN" takemyfork\n"reset, id);

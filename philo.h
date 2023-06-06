@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/06 17:52:37 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:20:26 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ void    ft_print(int id, long time, int mode);
 
 
 long    current_time(void);
-long    time_to_action(long time_action);
+long    time_to_action(long time_action, long check_state);
 long    time_diff(long time);
 
+
+int     ft_checkdie (t_main *main);
 #endif
