@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/07 15:14:43 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:51:44 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct  s_data
     int     time_eat;
     int     time_sleep;
     int     nbr_eat;
+    pthread_mutex_t print; // for lock print
     // long    start_time;
 
 }   t_data ;
@@ -63,7 +64,7 @@ typedef struct s_philo
     int         check_state;
     long        last_meal; //??
     long        start_time; //??
-    pthread_mutex_t *print; // for lock print
+    // pthread_mutex_t *print; // for lock print
     
     t_data      *data;
     pthread_t   th;  // t_id 1 : 1 philo
@@ -100,9 +101,9 @@ int ft_crttheard(t_main *main);
 
 
 
-
-void    ft_print(int id, long time, int mode);
-
+// void    ft_print(int id, long start_time, pthread_mutex_t *print,int mode);
+// void    ft_print(int id, long time, int mode);
+void    ft_print(t_philo *philo,int mode);
 
 long    current_time(void);
 long    time_to_action(long time_action, long check_state);

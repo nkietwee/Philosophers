@@ -60,7 +60,6 @@ pthread_mutex_t *ft_initfork(int nbr_philo)
     int i;
     pthread_mutex_t *fork;
     
-    // printf("nbr_philo_fork : %d\n" ,nbr_philo);
     fork = NULL;
     fork = malloc(sizeof(pthread_mutex_t) * nbr_philo);
     if (!fork)
@@ -71,13 +70,12 @@ pthread_mutex_t *ft_initfork(int nbr_philo)
         pthread_mutex_init(&fork[i] , NULL);
         i++;
     }
-    // printf("end_initfork\n");
     return (fork);
 }
 
 int ft_init(t_main *main, int ac, char **av)
 {
-    main->print = NULL;
+    // main->print = NULL;
     if (ft_initdataphilo(&main->data, ac, av) == EXIT_FAILURE)
         return(EXIT_FAILURE);
     main->philo =  ft_initphilo(&main->data);
@@ -86,9 +84,10 @@ int ft_init(t_main *main, int ac, char **av)
     main->fork =  ft_initfork(main->data.nbr_philo);
     if (!main->fork)
         return (EXIT_FAILURE);
-    main->print = pthread_mutex_init(main->print, NULL);
-    if (!main->print)
-        return (EXIT_FAILURE); 
+    // main->data.print = pthread_mutex_init(main->data.print, NULL);
+    pthread_mutex_init(&main->data.print, NULL);
+    // if (!main->print)
+    //     return (EXIT_FAILURE); 
     // ft_crttheard(main);
     return(EXIT_SUCCESS);
 }
