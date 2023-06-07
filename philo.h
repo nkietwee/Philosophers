@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/06 19:20:26 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:14:43 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_philo
     int         check_state;
     long        last_meal; //??
     long        start_time; //??
+    pthread_mutex_t *print; // for lock print
     
     t_data      *data;
     pthread_t   th;  // t_id 1 : 1 philo
@@ -76,6 +77,7 @@ typedef struct s_main
     t_data          data;
     t_philo         *philo;
     pthread_mutex_t *fork; // fork 1 : 1 philo
+    // pthread_mutex_t *print; // for lock print
 
 } t_main ;
 

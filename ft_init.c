@@ -77,6 +77,7 @@ pthread_mutex_t *ft_initfork(int nbr_philo)
 
 int ft_init(t_main *main, int ac, char **av)
 {
+    main->print = NULL;
     if (ft_initdataphilo(&main->data, ac, av) == EXIT_FAILURE)
         return(EXIT_FAILURE);
     main->philo =  ft_initphilo(&main->data);
@@ -85,6 +86,9 @@ int ft_init(t_main *main, int ac, char **av)
     main->fork =  ft_initfork(main->data.nbr_philo);
     if (!main->fork)
         return (EXIT_FAILURE);
+    main->print = pthread_mutex_init(main->print, NULL);
+    if (!main->print)
+        return (EXIT_FAILURE); 
     // ft_crttheard(main);
     return(EXIT_SUCCESS);
 }

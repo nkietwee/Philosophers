@@ -6,17 +6,19 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 00:07:33 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/06 19:46:34 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:13:34 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    ft_print(int id, long start_time, int mode)
+// void    ft_print(int id, long start_time, int mode)
+void    ft_print(int id, long start_time, pth,int mode)
 {
     long    time;
     
     time = current_time() - start_time; 
+    // pthread_mutex_lock()
     printf(BBLU"%ld ms " reset, time);
     // printf(BWHT" ms   " reset);
     if (mode == MYFORK)

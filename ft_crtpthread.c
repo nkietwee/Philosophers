@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/07 04:07:36 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/07 14:00:11 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int ft_philoeat(t_philo *philo, pthread_mutex_t *fork)
     time_to_action(philo->data->time_eat, philo->check_state);
     ft_take_and_drop(philo, fork, DROP);
     philo->nbr_ate++; // in case It have amount of eat
+    // printf("philo[%d] : %d\n" , philo->id, philo->nbr_ate);
     return (EXIT_SUCCESS);    
 }
 
@@ -109,7 +110,7 @@ int ft_crttheard(t_main *main)
         i += 2; // for even nbr
         if (i >= main->data.nbr_philo && i % 2 == 0) // start odd number
         {
-            usleep(20);
+            usleep(40);
             i = 1;
         }
     }
