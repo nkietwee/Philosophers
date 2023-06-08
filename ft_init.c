@@ -14,7 +14,6 @@
 
 int ft_initdataphilo(t_data *data, int ac, char **av)
 {
-    // data = NULL;
     data->nbr_philo = ft_atoi(av[1]);
     // if (data->nbr_philo == 0)
     //     return (EXIT_FAILURE);
@@ -45,11 +44,6 @@ t_philo    *ft_initphilo(t_data *data)
         philo[i].nbr_ate = 0;
         philo[i].data = data;
         philo[i].check_state = 0;
-        // printf("id :\t%d\n" , philo[i].id);
-        // printf("myfork :\t%d\n" , philo[i].myfork);
-        // printf("notmyfork :\t%d\n" , philo[i].notmyfork );
-        // printf("nbr_ate :\t%d\n" , philo[i].nbr_ate );
-        // printf("\n");
         i++;
     }
     return (philo);

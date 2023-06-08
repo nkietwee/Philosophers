@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:41:42 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/30 19:06:27 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/09 04:06:23 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int ft_checkformat(int ac, char **av)
     j = 0;
         while (av[i][j])
         {
-            // if (ft_isdigit(av[i][j]) == -1) 
-            if (!(av[i][j] >= '0' && av[i][j] <= '9'))
+            // if (!(av[i][j] >= '0' && av[i][j] <= '9'))
+            if (ft_isdigit(av[i][j]) == EXIT_FAILURE) 
             {           
                 printf("found arg\n");
                 return (EXIT_FAILURE);
