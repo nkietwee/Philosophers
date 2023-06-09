@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 00:32:11 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:10:54 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,32 +82,30 @@ typedef struct s_main
 
 } t_main ;
 
-int ft_check(int ac, char **av);
-int ft_checkarg(int ac);
-int ft_checkformat(int ac, char **av);
-int ft_isdigit(char c); //??
+int             ft_check(int ac, char **av);
+int             ft_checkarg(int ac);
+int             ft_checkformat(int ac, char **av);
+int             ft_isdigit(char c); //??
 
 
-int     ft_printerr(int mode);
-int     ft_atoi(char *str);
+int             ft_printerr(int mode);
+int             ft_atoi(char *str);
 
-int     ft_init(t_main *main, int ac, char **av);
-int     ft_initdataphilo(t_data *data, int ac, char **av);
+int             ft_init(t_main *main, int ac, char **av);
+int             ft_initdataphilo(t_data *data, int ac, char **av);
 pthread_mutex_t *ft_initfork(int nbr_philo);
-t_philo *ft_initphilo(t_data *data);
+t_philo         *ft_initphilo(t_data *data);
 
 
-int ft_crttheard(t_main *main);
-int    ft_sleep_think(t_philo *philo);
+int             ft_crttheard(t_main *main);
+int             ft_sleep_think(t_philo *philo);
 
 
-void    ft_print(t_philo *philo,int mode);
+void            ft_print(t_philo *philo,int mode);
 
-long    current_time(void);
-long    time_to_action(long time_action, long check_state);
-long    time_diff(long time);
+long            current_time(void);
+int             time_to_action(long time_action, int *check_state);
+long            time_diff(long time);
 
-
-// int     ft_checkdie (t_main *main);
-void     ft_checkdie (t_main *main);
+void            ft_checkdie (t_main *main);
 #endif

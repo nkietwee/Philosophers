@@ -6,7 +6,7 @@
 #    By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 17:25:44 by nkietwee          #+#    #+#              #
-#    Updated: 2023/06/09 03:44:20 by nkietwee         ###   ########.fr        #
+#    Updated: 2023/06/09 16:06:21 by nkietwee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,4 +44,18 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+a: re
+	./philo 1 800 200 200
+
+b: re
+	./philo 5 800 200 200
+
+c: re
+	./philo 5 800 200 200 7
+
+d: re
+	./philo 4 410 200 200
+
+e: re
+	./philo 4 310 200 100
+.PHONY: all clean fclean re a b c d e

@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 04:07:11 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:36:03 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int    ft_sleep_think(t_philo *philo)
 {
     ft_print(philo, SLEEP);
-    time_to_action(philo->data->time_sleep, philo->check_state );
+    time_to_action(philo->data->time_sleep, &philo->check_state);
     ft_print(philo, THINK);
     return(EXIT_SUCCESS);
 }
@@ -43,13 +43,14 @@ int    ft_take_and_drop(t_philo *philo, pthread_mutex_t *fork, int mode)
 
 int ft_philoeat(t_philo *philo, pthread_mutex_t *fork)
 {
-    if (ft_take_and_drop(philo, fork, TAKE) == EXIT_FAILURE)
-        return(EXIT_FAILURE);
+    if (philo->check_state == 1 || ft_take_and_drop(philo, fork, TAKE) == EXIT_FAILURE)
+        return (EXIT_FAILURE);
     ft_print(philo, EAT);
     philo->start_meal = current_time(); // for check_die
     // printf("last_meal[%d] : %lu\n" ,philo->id , philo->last_meal - philo->start_time);
-    time_to_action(philo->data->time_eat, philo->check_state);
-    ft_take_and_drop(philo, fork, DROP);
+    time_to_action(philo->data->time_eat, &philo->check_state);
+    if (philo->check_state == 1 || ft_take_and_drop(philo, fork, DROP))
+        return (EXIT_FAILURE);
     philo->nbr_ate++; // in case It have amount of eat
     return (EXIT_SUCCESS);    
 }
@@ -62,7 +63,7 @@ void    *routine(void *arg)
     
     main = (t_main *)arg;
     i = main->id_cur;
-    main->philo[i].start_meal = main->philo->start_time;//??
+    main->philo[i].start_meal = main->philo[i].start_time;//??
     while (!main->philo[i].check_state) // when it die // main->data.eat <= main->data.ate
     {
         if (ft_philoeat(&main->philo[i], main->fork) == EXIT_FAILURE)

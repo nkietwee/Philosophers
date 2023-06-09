@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:41:15 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 04:03:37 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:32:59 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ void ft_checkdie (t_main *main)
     {
         if (main->data.nbr_eat != -1 && ft_check_nbr_ate(main) == EXIT_SUCCESS)
         {
-            printf("check_nbr_ate\n");
-            main->philo[i].check_state = 1;
+            // printf("check_nbr_ate\n");
+            int n = 0;
+            while (n < main->data.nbr_philo)
+                main->philo[n++].check_state = 1;
             return ; // ??
         }
         if (time_diff(main->philo[i].start_meal) > main->data.time_die)
