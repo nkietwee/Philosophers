@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 12:10:54 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:50:29 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,6 @@ int             time_to_action(long time_action, int *check_state);
 long            time_diff(long time);
 
 void            ft_checkdie (t_main *main);
+
+void            ft_clear(t_main *main);
 #endif

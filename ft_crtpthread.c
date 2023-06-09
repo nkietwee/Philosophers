@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 13:36:03 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:05:08 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int ft_philoeat(t_philo *philo, pthread_mutex_t *fork)
     philo->start_meal = current_time(); // for check_die
     // printf("last_meal[%d] : %lu\n" ,philo->id , philo->last_meal - philo->start_time);
     time_to_action(philo->data->time_eat, &philo->check_state);
-    if (philo->check_state == 1 || ft_take_and_drop(philo, fork, DROP))
+    if (philo->check_state == 1 || ft_take_and_drop(philo, fork, DROP) == EXIT_FAILURE)
         return (EXIT_FAILURE);
     philo->nbr_ate++; // in case It have amount of eat
     return (EXIT_SUCCESS);    

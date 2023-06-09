@@ -6,7 +6,7 @@
 #    By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 17:25:44 by nkietwee          #+#    #+#              #
-#    Updated: 2023/06/09 16:06:21 by nkietwee         ###   ########.fr        #
+#    Updated: 2023/06/09 17:42:56 by nkietwee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = ft_checkerr.c \
 		ft_time.c\
 		ft_print.c\
 		ft_checkdie.c\
+		ft_clear.c\
 
 OBJS = $(SRCS:.c=.o)
 

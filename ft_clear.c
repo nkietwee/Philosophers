@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philo.c                                         :+:      :+:    :+:   */
+/*   ft_clear.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 17:19:04 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 17:50:45 by nkietwee         ###   ########.fr       */
+/*   Created: 2023/06/09 17:43:18 by nkietwee          #+#    #+#             */
+/*   Updated: 2023/06/09 17:52:33 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+void    ft_clearmutex(t_main *main)
 {
-     t_main main;
+    int i;
 
-     if (ft_check(ac, av) ==  EXIT_FAILURE)
-          return (EXIT_FAILURE);
-     if (ft_init(&main, ac, av) == EXIT_FAILURE)
-          return(EXIT_FAILURE);
-     if (ft_crttheard(&main) == EXIT_FAILURE)          
-          return (EXIT_FAILURE);
-     ft_checkdie(&main);
-     // printf("End main\n");
-     ft_clear(&main);
-    //clearmutex
-    //free
-   return (EXIT_SUCCESS);
+    i = 0;
+    while (i < main->data.nbr_philo)
+    {
+        pthread_mutex_destroy(&main->fork[i]);
+        i++;
+    }
+    pthread_mutex_destroy(&main->data.print);
+}
+
+void    ft_clear(t_main *main)
+{
+    ft_clearmutex(main);
+    free(main->philo);
+    free(main->fork);
+
+    
 }
