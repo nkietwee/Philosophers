@@ -12,11 +12,9 @@
 
 #include "philo.h"
 
-int ft_initdataphilo(t_data *data, int ac, char **av)
+void    ft_initdataphilo(t_data *data, int ac, char **av)
 {
     data->nbr_philo = ft_atoi(av[1]);
-    // if (data->nbr_philo == 0)
-    //     return (EXIT_FAILURE);
     data->time_die = ft_atoi(av[2]);
     data->time_eat = ft_atoi(av[3]);
     data->time_sleep = ft_atoi(av[4]);
@@ -24,7 +22,8 @@ int ft_initdataphilo(t_data *data, int ac, char **av)
         data->nbr_eat = ft_atoi(av[5]);
     else
         data->nbr_eat = -1;
-    return(EXIT_SUCCESS);
+    data->check_state = 0;
+    // return(EXIT_SUCCESS);
 }
 
 t_philo    *ft_initphilo(t_data *data)
@@ -39,11 +38,11 @@ t_philo    *ft_initphilo(t_data *data)
     while (i < data->nbr_philo)
     {
         philo[i].id = i + 1; // id start at 1 to nbr_philo
-        philo[i].myfork = i;
-        philo[i].notmyfork = (i + 1) % data->nbr_philo; 
+        philo[i].myfork = i; // for position
+        philo[i].notmyfork = (i + 1) % data->nbr_philo; // for position
         philo[i].nbr_ate = 0;
         philo[i].data = data;
-        philo[i].check_state = 0;
+        // philo[i].check_state = 0;
         i++;
     }
     return (philo);
@@ -70,8 +69,9 @@ pthread_mutex_t *ft_initfork(int nbr_philo)
 int ft_init(t_main *main, int ac, char **av)
 {
     // main->print = NULL;
-    if (ft_initdataphilo(&main->data, ac, av) == EXIT_FAILURE)
-        return(EXIT_FAILURE);
+    ft_initdataphilo(&main->data, ac, av);
+    if (main->data.nbr_philo == 0)
+        return (EXIT_FAILURE);
     main->philo =  ft_initphilo(&main->data);
     if (!main->philo)
         return (EXIT_FAILURE);

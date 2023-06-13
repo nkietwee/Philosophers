@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/13 23:29:59 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/14 01:05:10 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ enum arg
     ,EAT
     ,SLEEP
     ,THINK
-    ,DIE 
+    ,DIE
 };
 
 enum fork
@@ -43,6 +43,7 @@ enum fork
     
 };
 
+
 typedef struct  s_data
 {
     int     nbr_philo;
@@ -50,6 +51,7 @@ typedef struct  s_data
     int     time_eat;
     int     time_sleep;
     int     nbr_eat;
+    int     check_state;
     pthread_mutex_t print; // for lock print
     // long    start_time;
 
@@ -61,7 +63,7 @@ typedef struct s_philo
     int         myfork;
     int         notmyfork;
     int         nbr_ate;
-    int         check_state;
+    // int         check_state;
     long        start_meal; //last_meal
     long        start_time; //??
     // pthread_mutex_t *print; // for lock print
@@ -92,7 +94,8 @@ int             ft_printerr(int mode);
 int             ft_atoi(char *str);
 
 int             ft_init(t_main *main, int ac, char **av);
-int             ft_initdataphilo(t_data *data, int ac, char **av);
+void            ft_initdataphilo(t_data *data, int ac, char **av);
+// int             ft_initdataphilo(t_data *data, int ac, char **av);
 pthread_mutex_t *ft_initfork(int nbr_philo);
 t_philo         *ft_initphilo(t_data *data);
 
