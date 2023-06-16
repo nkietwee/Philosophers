@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 00:07:33 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/13 17:36:15 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/16 22:49:32 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    ft_print(t_philo *philo,int mode)
 {
     long    time;
     
-    time = current_time() - philo->start_time; 
+    time = current_time() - philo->data->start_time; 
     pthread_mutex_lock(&philo->data->print);
     printf(BBLU"%ld ms " reset, time);
     

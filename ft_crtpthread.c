@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/16 22:43:12 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:13:31 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void    *routine(void *arg)
     
     main = (t_main *)arg;
     i = main->id_cur;
-    main->philo[i].start_meal = main->philo[i].start_time;//??
+    main->philo[i].start_meal = main->data.start_time; //??
     while (!main->data.check_state) // when it die // main->data.eat <= main->data.ate
     {
         if (ft_philoeat(&main->philo[i], main->fork) == EXIT_FAILURE)
@@ -81,16 +81,14 @@ int ft_crttheard(t_main *main)
     int i; 
     
     i = 0;  
-    main->philo[i].start_time = current_time();
+    // main->philo[i].start_time = current_time();
+    main->data.start_time = current_time();
     while (i < main->data.nbr_philo)
     {
         
-        main->philo[i].start_time = main->philo[0].start_time;
         main->id_cur = i;
         if (pthread_create(&main->philo[i].th, NULL, &routine, main) == EXIT_FAILURE)
             return (EXIT_FAILURE);
-        // if (pthread_join(main->philo[i].th , NULL) == EXIT_FAILURE)
-        //     return (EXIT_FAILURE); 
         if (pthread_detach(main->philo[i].th) == EXIT_FAILURE)
             return (EXIT_FAILURE);
         usleep (10);

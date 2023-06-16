@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/14 18:37:27 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/16 22:45:47 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ enum fork
 typedef struct  s_data
 {
     int     nbr_philo;
-    int     time_die;
-    int     time_eat;
-    int     time_sleep;
+    long     time_die;
+    long     time_eat;
+    long     time_sleep;
     int     nbr_eat;
     int     check_state;
+    long        start_time; //??
     pthread_mutex_t print; // for lock print
     // long    start_time;
 
@@ -65,7 +66,7 @@ typedef struct s_philo
     int         nbr_ate;
     // int         check_state;
     long        start_meal; //last_meal
-    long        start_time; //??
+    // long        start_time; //??
     // pthread_mutex_t *print; // for lock print
     
     t_data      *data;

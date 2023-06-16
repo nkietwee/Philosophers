@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:41:42 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 04:06:23 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:17:22 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int ft_checkformat(int ac, char **av)
     (void)ac;
     while (av[i])
     {
-    j = 0;
+        j = 0;
         while (av[i][j])
         {
             // if (!(av[i][j] >= '0' && av[i][j] <= '9'))
@@ -47,7 +47,10 @@ int ft_checkformat(int ac, char **av)
 int ft_checkarg(int ac)
 {
     if (ac != 5 && ac != 6)
+    {
+        printf("Plz check your arg\n");
         return (EXIT_FAILURE);
+    }
     return (EXIT_SUCCESS);
 }
 
