@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:41:15 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/14 01:37:14 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:09:10 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@
 
 // }
 
-int ft_check_nbr_ate(t_main *main)
-{
-    int i;
-
-    i = 0;
-    while (i < main->data.nbr_philo)
-    {
-        if ((main->philo[i].nbr_ate < main->data.nbr_eat) || main->philo[i].nbr_ate == -1)
-            return (EXIT_FAILURE);  
-        i++;
-    }
-    return (EXIT_SUCCESS);
-
-}
 
 // int ft_checkdie (t_main *main)
 // {
@@ -73,6 +59,20 @@ int ft_check_nbr_ate(t_main *main)
 //     return(EXIT_SUCCESS);
 // }
 
+int ft_check_nbr_ate(t_main *main)
+{
+    int i;
+
+    i = 0;
+    while (i < main->data.nbr_philo)
+    {
+        if ((main->philo[i].nbr_ate < main->data.nbr_eat) || main->philo[i].nbr_ate == -1)
+            return (EXIT_FAILURE);  
+        i++;
+    }
+    return (EXIT_SUCCESS);
+
+}
 
 void ft_checkdie (t_main *main)
 {
@@ -83,18 +83,11 @@ void ft_checkdie (t_main *main)
     {
         if (main->data.nbr_eat != -1 && ft_check_nbr_ate(main) == EXIT_SUCCESS)
         {
-            // printf("check_nbr_ate\n");
-            // int n = 0;
-            // while (n < main->data.nbr_philo)
             main->data.check_state = 1;
             return ; // ??
         }
-        if (time_diff(main->philo[i].start_meal) > main->data.time_die)
+        if (((main->data.nbr_eat < main->philo[i].nbr_ate) || main->data.nbr_eat == -1 )&& time_diff(main->philo[i].start_meal) > main->data.time_die)
         {
-            // printf("time_diff\n");
-            // printf("time_diff[%d] : %lu\n" , main->philo->id, time_diff(main->philo[i].start_meal));
-            // printf("start_meal[%d] : %lu\n" , main->philo->id, (main->philo[i].start_meal - main->philo[i].start_time));
-            // printf("time_die : %d\n" , main->data.time_die);
             main->data.check_state = 1;
             ft_print(main->philo , DIE);
             return ;

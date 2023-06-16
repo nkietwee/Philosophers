@@ -34,7 +34,7 @@ t_philo    *ft_initphilo(t_data *data)
     i = 0;
     philo = malloc(sizeof(t_philo) * data->nbr_philo);
     if (!philo)
-        return (0);
+        return (NULL);
     while (i < data->nbr_philo)
     {
         philo[i].id = i + 1; // id start at 1 to nbr_philo

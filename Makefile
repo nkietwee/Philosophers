@@ -6,7 +6,7 @@
 #    By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 17:25:44 by nkietwee          #+#    #+#              #
-#    Updated: 2023/06/14 01:50:48 by nkietwee         ###   ########.fr        #
+#    Updated: 2023/06/16 22:35:17 by nkietwee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -pthread #-g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -pthread -g -fsanitize=address
 
 
 SRCS = ft_checkerr.c \
