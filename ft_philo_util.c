@@ -6,13 +6,13 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:55:49 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/03 11:41:30 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:11:08 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int ft_atoi(char *str)
+long ft_atol(char *str)
 {
     int i;
     long res;
@@ -24,8 +24,6 @@ int ft_atoi(char *str)
     while(str[i] >= '0' && str[i] <= '9')
     {
         res = (res * 10) + str[i] - '0';
-        // if (res > 2147483647) // protect value over max int 
-        //     return(0); // If value == 0
         i++;
     }
     // printf("res : %ld\n", res);

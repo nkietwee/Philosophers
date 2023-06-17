@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:43:18 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/14 01:19:38 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:44:26 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void    ft_clearmutex(t_main *main)
 
 void    ft_clear(t_main *main)
 {
-    ft_clearmutex(main);
-    free(main->philo);
-    free(main->fork);
-    main->philo = NULL;
-    main->fork = NULL;
-    
+    if (main->data.check_state == DIE)
+    {
+        ft_clearmutex (main);
+        free (main->philo);
+        free (main->fork);
+        main->philo = NULL;
+        main->fork = NULL;
+    }
 }

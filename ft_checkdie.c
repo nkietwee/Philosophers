@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:41:15 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 00:04:52 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:29:29 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,20 @@ void ft_checkdie (t_main *main)
     {
         if (main->data.nbr_eat != -1 && ft_check_nbr_ate(main) == EXIT_SUCCESS)
         {
-            main->data.check_state = 1;
+            main->data.check_state = DIE;
+            // usleep(10);
             return ; // ??
         }
         // if (((main->data.nbr_ea`t <= main->philo[i].nbr_ate) || main->data.nbr_eat == -1 ) \
         //  && time_diff(main->philo[i].start_meal) > main->data.time_die)
-          if (((main->philo[i].nbr_ate >= main->data.nbr_eat) || main->data.nbr_eat == -1 ) \
+          if (((main->philo[i].nbr_ate < main->data.nbr_eat) || main->data.nbr_eat == -1 ) \
          && time_diff(main->philo[i].start_meal) > main->data.time_die)
         {
-            main->data.check_state = 1;
-            ft_print(main->philo , DIE);
+            main->data.check_state = DIE;
+            ft_print(main->philo , PDIE);
             return ;
         }
+        usleep(5);
         i++;
         i = i % main->data.nbr_philo;
     }    

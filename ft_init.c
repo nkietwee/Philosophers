@@ -14,12 +14,12 @@
 
 void    ft_initdataphilo(t_data *data, int ac, char **av)
 {
-    data->nbr_philo = ft_atoi(av[1]);
-    data->time_die = ft_atoi(av[2]);
-    data->time_eat = ft_atoi(av[3]);
-    data->time_sleep = ft_atoi(av[4]);
+    data->nbr_philo = ft_atol(av[1]);
+    data->time_die = ft_atol(av[2]);
+    data->time_eat = ft_atol(av[3]);
+    data->time_sleep = ft_atol(av[4]);
     if (ac == 6)
-        data->nbr_eat = ft_atoi(av[5]);
+        data->nbr_eat = ft_atol(av[5]);
     else
         data->nbr_eat = -1;
     data->check_state = 0;

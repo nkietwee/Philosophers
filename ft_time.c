@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:48:39 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/09 13:25:46 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:56:22 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int    time_to_action(long time_action, int *check_state)
 
     start = current_time();   
     while (!(*check_state) && (current_time() -  start < time_action)) // check_die
-        usleep(100);
+        usleep(50);
     // printf(URED"out\n" reset);
     // usleep(time_action); It cann't use in case It die 
     return(*check_state);

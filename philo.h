@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 01:03:28 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:58:15 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,29 @@ enum error
     
 };
 
-enum arg
+enum printarg
 {
-    MYFORK
-    ,NOTMYFORK
-    ,EAT
-    ,SLEEP
-    ,THINK
-    ,DIE
+    PMYFORK
+    ,PNOTMYFORK
+    ,PEAT
+    ,PSLEEP
+    ,PTHINK
+    ,PDIE
 };
 
 enum fork
 {
     TAKE
-    ,DROP
-    
+    ,DROP   
 };
 
+enum state
+{
+    NOTDIE
+    ,DIE
+
+
+};
 
 typedef struct  s_data
 {
@@ -86,7 +92,7 @@ int             ft_isdigit(char c); //??
 
 
 int             ft_printerr(int mode);
-int             ft_atoi(char *str);
+long             ft_atol(char *str);
 
 int             ft_init(t_main *main, int ac, char **av);
 void            ft_initdataphilo(t_data *data, int ac, char **av);
