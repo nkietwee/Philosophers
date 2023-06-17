@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/16 22:45:47 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/17 01:03:28 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,7 @@ typedef struct s_philo
     int         myfork;
     int         notmyfork;
     int         nbr_ate;
-    // int         check_state;
     long        start_meal; //last_meal
-    // long        start_time; //??
-    // pthread_mutex_t *print; // for lock print
-    
     t_data      *data;
     pthread_t   th;  // t_id 1 : 1 philo
 
@@ -77,11 +73,9 @@ typedef struct s_philo
 typedef struct s_main
 {
     int             id_cur;
-    // long        start_time;
     t_data          data;
     t_philo         *philo;
     pthread_mutex_t *fork; // fork 1 : 1 philo
-    // pthread_mutex_t *print; // for lock print
 
 } t_main ;
 

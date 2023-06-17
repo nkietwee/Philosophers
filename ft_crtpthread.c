@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/16 23:13:31 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:47:02 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int    ft_sleep_think(t_philo *philo)
     ft_print(philo, SLEEP);
     if (time_to_action(philo->data->time_sleep, &philo->data->check_state))
         return (EXIT_FAILURE);
-    ft_print(philo, THINK); // segfault
+    ft_print(philo, THINK);
     return (EXIT_SUCCESS);
 }
 
@@ -64,7 +64,7 @@ void    *routine(void *arg)
     int     i;
     
     main = (t_main *)arg;
-    i = main->id_cur;
+    i = main->id_cur;//segfault ??
     main->philo[i].start_meal = main->data.start_time; //??
     while (!main->data.check_state) // when it die // main->data.eat <= main->data.ate
     {
@@ -81,11 +81,10 @@ int ft_crttheard(t_main *main)
     int i; 
     
     i = 0;  
-    // main->philo[i].start_time = current_time();
+    // printf ("nbr_philo : %d\n", main->data.nbr_philo);
     main->data.start_time = current_time();
     while (i < main->data.nbr_philo)
-    {
-        
+    { 
         main->id_cur = i;
         if (pthread_create(&main->philo[i].th, NULL, &routine, main) == EXIT_FAILURE)
             return (EXIT_FAILURE);
