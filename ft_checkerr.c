@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:41:42 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 23:21:56 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:58:48 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int ft_checkintmax(char **av)
     i = 1;
     while (av[i])
     {
-        // printf("check22222\n");
         if (ft_atol(av[i]) > 2147483647)
         {
             printf("Error\n");
@@ -49,7 +48,6 @@ int ft_checkformat(int ac, char **av)
         j = 0;
         while (av[i][j])
         {
-            // if (!(av[i][j] >= '0' && av[i][j] <= '9'))
             if (ft_isdigit(av[i][j]) == EXIT_FAILURE) 
             {           
                 printf("Error\n");
@@ -72,6 +70,7 @@ int ft_checkarg(int ac)
     return (EXIT_SUCCESS);
 }
 
+// protect "" "" 
 int ft_check(int ac, char **av)
 {
     if (ft_checkarg(ac) == EXIT_FAILURE)

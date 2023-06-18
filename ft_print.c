@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 00:07:33 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 23:21:15 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/18 22:15:43 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void    ft_putstr(char *str)
     if (!str)
         return ;
     write(1, str, ft_strlen(str));
-
-    
+ 
 }
 
 void    ft_print(t_philo *philo,int mode)
@@ -37,10 +36,12 @@ void    ft_print(t_philo *philo,int mode)
     
     time = current_time() - philo->data->start_time; 
     pthread_mutex_lock(&philo->data->print);
-    printf(BBLU"%ld ms " reset, time);
+    // printf("id:%d", philo->id);
     
+    // printf("id:%d", philo->id);
     if (philo->data->check_state == NOTDIE)
     {
+        printf(BBLU"%ld ms " reset, time);
         if (mode == PMYFORK)
             printf("Philo %d takemyfork\n", philo->id);
         else if (mode == PNOTMYFORK)
@@ -51,9 +52,9 @@ void    ft_print(t_philo *philo,int mode)
             printf("Philo %d sleep\n", philo->id);
         else if (mode == PTHINK)
             printf("Philo %d think\n", philo->id);
+        // else if (mode == PDIE)
+        //     printf("Philo %d die\n", philo->id);
     }
-    if (mode == PDIE)
-            printf("Philo %d die\n", philo->id);
     // if (mode == MYFORK)
     //     printf(BWHT"Philo %d" GRN" takemyfork\n"reset, philo->id);
     // else if (mode == NOTMYFORK)

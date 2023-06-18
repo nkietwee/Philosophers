@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 22:58:15 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/18 20:05:25 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct  s_data
     int     check_state;
     long        start_time; //??
     pthread_mutex_t print; // for lock print
-    // long    start_time;
+    // long    start_meal;
 
 }   t_data ;
 

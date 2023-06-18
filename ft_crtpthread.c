@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 16:45:40 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/18 22:29:24 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ int    ft_take_and_drop(t_philo *philo, pthread_mutex_t *fork, int mode)
 {
     if (mode == TAKE)
     {
-        if (philo->data->check_state == 1 || pthread_mutex_lock(&fork[philo->myfork]) != 0) // 0 success
+        if (philo->data->check_state == DIE || pthread_mutex_lock(&fork[philo->myfork]) != 0) // 0 success
             return(EXIT_FAILURE);
         ft_print(philo, PMYFORK);
-        if (philo->data->check_state == 1 || pthread_mutex_lock(&fork[philo->notmyfork]) != 0) // 0 success
+        if (philo->data->check_state == DIE || pthread_mutex_lock(&fork[philo->notmyfork]) != 0) // 0 success
             return(EXIT_FAILURE);
         ft_print(philo, PNOTMYFORK);
     }
     else if (mode == DROP)
     {
-        if (pthread_mutex_unlock(&fork[philo->myfork]) != 0) // 0 success
+        if (philo->data->check_state == DIE || pthread_mutex_unlock(&fork[philo->myfork]) != 0) // 0 success
             return(EXIT_FAILURE);
-        if (pthread_mutex_unlock(&fork[philo->notmyfork]) != 0) // 0 success
+        if (philo->data->check_state == DIE || pthread_mutex_unlock(&fork[philo->notmyfork]) != 0) // 0 success
             return(EXIT_FAILURE);
     }
     return (EXIT_SUCCESS);
@@ -44,7 +44,7 @@ int    ft_take_and_drop(t_philo *philo, pthread_mutex_t *fork, int mode)
 
 int ft_philoeat(t_philo *philo, pthread_mutex_t *fork)
 {
-    if (philo->data->check_state == 1 || ft_take_and_drop(philo, fork, TAKE) == EXIT_FAILURE)
+    if (philo->data->check_state == DIE || ft_take_and_drop(philo, fork, TAKE) == EXIT_FAILURE)
         return (EXIT_FAILURE);
     ft_print(philo, PEAT);
     // printf("---------last_meal[%d] : %lu-------\n" ,philo->id , philo->start_meal - philo->start_time);
@@ -59,7 +59,6 @@ int ft_philoeat(t_philo *philo, pthread_mutex_t *fork)
 
 void    *routine(void *arg)
 {
-    (void)arg;
     t_main  *main;
     int     i;
     
@@ -81,7 +80,6 @@ int ft_crttheard(t_main *main)
     int i; 
     
     i = 0;  
-    // printf ("nbr_philo : %d\n", main->data.nbr_philo);
     main->data.start_time = current_time();
     // main->id_cur = 0;
     // while (main->id_cur < main->data.nbr_philo)
@@ -98,7 +96,7 @@ int ft_crttheard(t_main *main)
         // if (main->id_cur >= main->data.nbr_philo && main->id_cur % 2 == 0) // start odd number
         if (i >= main->data.nbr_philo && i % 2 == 0) // start odd number
         {
-            usleep(10);
+            usleep(50);
            i = 1;
         }
     }

@@ -22,8 +22,7 @@ void    ft_initdataphilo(t_data *data, int ac, char **av)
         data->nbr_eat = ft_atol(av[5]);
     else
         data->nbr_eat = -1;
-    data->check_state = 0;
-    // return(EXIT_SUCCESS);
+    data->check_state = NOTDIE;
 }
 
 t_philo    *ft_initphilo(t_data *data)
@@ -31,10 +30,10 @@ t_philo    *ft_initphilo(t_data *data)
     int i;
     t_philo *philo;
     
-    i = 0;
     philo = malloc(sizeof(t_philo) * data->nbr_philo);
     if (!philo)
         return (NULL);
+    i = 0;
     while (i < data->nbr_philo)
     {
         philo[i].id = i + 1; // id start at 1 to nbr_philo
@@ -42,7 +41,6 @@ t_philo    *ft_initphilo(t_data *data)
         philo[i].notmyfork = (i + 1) % data->nbr_philo; // for position
         philo[i].nbr_ate = 0;
         philo[i].data = data;
-        // philo[i].check_state = 0;
         i++;
     }
     return (philo);
@@ -70,7 +68,7 @@ int ft_init(t_main *main, int ac, char **av)
 {
     // main->print = NULL;
     ft_initdataphilo(&main->data, ac, av);
-    if (main->data.nbr_philo == 0)
+    if (main->data.nbr_philo == 0 || main->data.nbr_eat == 0)
         return (EXIT_FAILURE);
     main->philo =  ft_initphilo(&main->data);
     if (!main->philo)
@@ -80,6 +78,7 @@ int ft_init(t_main *main, int ac, char **av)
         return (EXIT_FAILURE);
     // main->data.print = pthread_mutex_init(main->data.print, NULL);
     pthread_mutex_init(&main->data.print, NULL);
+    // pthread_mutex_init(&main->data.print, NULL);
     // if (!main->print)
     //     return (EXIT_FAILURE); 
     // ft_crttheard(main);

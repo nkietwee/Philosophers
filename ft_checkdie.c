@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:41:15 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 18:29:29 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/18 22:15:30 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,12 @@ int ft_check_nbr_ate(t_main *main)
     i = 0;
     while (i < main->data.nbr_philo)
     {
-        if ((main->philo[i].nbr_ate < main->data.nbr_eat) || main->philo[i].nbr_ate == -1)
+        if ((main->philo[i].nbr_ate < main->data.nbr_eat))
             return (EXIT_FAILURE);  
         i++;
+        // if (main->data.check_state == DIE || \
+        // ((main->philo[i].nbr_ate < main->data.nbr_eat) || main->philo[i].nbr_ate == -1))
+            // return (EXIT_FAILURE);  
     }
     return (EXIT_SUCCESS);
 
@@ -77,11 +80,12 @@ int ft_check_nbr_ate(t_main *main)
 void ft_checkdie (t_main *main)
 {
     int i;
+    long time;
 
     i = 0;
     while (!main->data.check_state)
     {
-        if (main->data.nbr_eat != -1 && ft_check_nbr_ate(main) == EXIT_SUCCESS)
+        if (main->data.nbr_eat != -1 && ft_check_nbr_ate(main) == EXIT_SUCCESS )
         {
             main->data.check_state = DIE;
             // usleep(10);
@@ -89,14 +93,22 @@ void ft_checkdie (t_main *main)
         }
         // if (((main->data.nbr_ea`t <= main->philo[i].nbr_ate) || main->data.nbr_eat == -1 ) \
         //  && time_diff(main->philo[i].start_meal) > main->data.time_die)
-          if (((main->philo[i].nbr_ate < main->data.nbr_eat) || main->data.nbr_eat == -1 ) \
-         && time_diff(main->philo[i].start_meal) > main->data.time_die)
+          if (((main->philo[i].nbr_ate < main->data.nbr_eat)|| main->data.nbr_eat == -1) \
+         && time_diff(main->philo[i].start_meal) > main->data.time_die) // protect above If it eat already
         {
-            main->data.check_state = DIE;
-            ft_print(main->philo , PDIE);
-            return ;
+            pthread_mutex_lock(&main->data.print);
+            if (main->data.check_state == NOTDIE)
+            {
+                main->data.check_state = DIE;
+                time = current_time() - main->data.start_time;
+                printf(BBLU"%ld ms " reset, time);
+                printf("Philo %d die\n", main->philo->id);
+                // ft_print(main->philo , PDIE);
+            }
+            pthread_mutex_unlock(&main->data.print);
+            break;
         }
-        usleep(5);
+        usleep(10);
         i++;
         i = i % main->data.nbr_philo;
     }    
