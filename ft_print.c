@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 00:07:33 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/18 22:15:43 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/19 01:04:56 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ void    ft_putstr(char *str)
 
 void    ft_print(t_philo *philo,int mode)
 {
-    long    time;
+    unsigned long    time;
     
-    time = current_time() - philo->data->start_time; 
+    time = current_time() - philo->data->start_time ;
+    time = time / 1000;
+    // printf("[%d]  : %d\n" ,philo->id , philo->data->check_state);
+    // printf(" [%d] : [%p]\n" ,philo->id , &philo->data->check_state);
     pthread_mutex_lock(&philo->data->print);
     // printf("id:%d", philo->id);
     
     // printf("id:%d", philo->id);
     if (philo->data->check_state == NOTDIE)
     {
-        printf(BBLU"%ld ms " reset, time);
+        printf(BBLU"%d ms " reset, (int)time);
         if (mode == PMYFORK)
             printf("Philo %d takemyfork\n", philo->id);
         else if (mode == PNOTMYFORK)

@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/18 20:05:25 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/19 00:40:28 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ enum state
 typedef struct  s_data
 {
     int     nbr_philo;
-    long     time_die;
-    long     time_eat;
-    long     time_sleep;
+    unsigned long int     time_die;
+    unsigned long int    time_eat;
+    unsigned long int     time_sleep;
     int     nbr_eat;
     int     check_state;
-    long        start_time; //??
+    unsigned long int        start_time; //??
     pthread_mutex_t print; // for lock print
     // long    start_meal;
 
@@ -70,7 +70,7 @@ typedef struct s_philo
     int         myfork;
     int         notmyfork;
     int         nbr_ate;
-    long        start_meal; //last_meal
+    unsigned long int        start_meal; //last_meal
     t_data      *data;
     pthread_t   th;  // t_id 1 : 1 philo
 
@@ -92,7 +92,7 @@ int             ft_isdigit(char c); //??
 
 
 int             ft_printerr(int mode);
-long             ft_atol(char *str);
+unsigned long int             ft_atol(char *str);
 
 int             ft_init(t_main *main, int ac, char **av);
 void            ft_initdataphilo(t_data *data, int ac, char **av);
@@ -108,8 +108,8 @@ int             ft_sleep_think(t_philo *philo);
 void            ft_print(t_philo *philo,int mode);
 
 long            current_time(void);
-int             time_to_action(long time_action, int *check_state);
-long            time_diff(long time);
+int             time_to_action(unsigned long int time_action, int *check_state);
+unsigned long int            time_diff(unsigned long int time);
 
 void            ft_checkdie (t_main *main);
 

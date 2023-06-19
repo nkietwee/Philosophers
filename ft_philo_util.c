@@ -6,16 +6,16 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:55:49 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/17 23:11:08 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/19 00:39:59 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long ft_atol(char *str)
+unsigned long int ft_atol(char *str)
 {
     int i;
-    long res;
+    unsigned long int res;
     
     if (!str)
         return (0); 

@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:04 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/18 22:39:24 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/18 23:27:06 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int main(int ac, char **av)
           return (EXIT_FAILURE);
      ft_checkdie(&main);
      ft_clear(&main);
-     // printf("Philo Milo Died :D\n");
    return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:41:15 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/18 22:15:30 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/19 01:12:30 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@
 //         if (main->philo[i].nbr_ate == main->data.nbr_eat || main->philo[i].nbr_ate == -1)
 //             i++;
 //         else
-//             return (EXIT_FAILURE);  
+//             return (EXIT_FAILURE);
 //     }
 //     return (EXIT_SUCCESS);
 
 // }
-
 
 // int ft_checkdie (t_main *main)
 // {
@@ -55,7 +54,7 @@
 //         }
 //         i++;
 //         i = i % main->data.nbr_philo;
-//     }    
+//     }
 //     return(EXIT_SUCCESS);
 // }
 
@@ -67,49 +66,50 @@ int ft_check_nbr_ate(t_main *main)
     while (i < main->data.nbr_philo)
     {
         if ((main->philo[i].nbr_ate < main->data.nbr_eat))
-            return (EXIT_FAILURE);  
+            return (EXIT_FAILURE);
         i++;
         // if (main->data.check_state == DIE || \
         // ((main->philo[i].nbr_ate < main->data.nbr_eat) || main->philo[i].nbr_ate == -1))
-            // return (EXIT_FAILURE);  
+        // return (EXIT_FAILURE);
     }
     return (EXIT_SUCCESS);
-
 }
 
-void ft_checkdie (t_main *main)
+void ft_checkdie(t_main *main)
 {
     int i;
-    long time;
+    unsigned long int time;
 
     i = 0;
     while (!main->data.check_state)
     {
-        if (main->data.nbr_eat != -1 && ft_check_nbr_ate(main) == EXIT_SUCCESS )
+        if (main->data.nbr_eat != -1 && ft_check_nbr_ate(main) == EXIT_SUCCESS)
         {
             main->data.check_state = DIE;
             // usleep(10);
-            return ; // ??
+            return; // ??
         }
         // if (((main->data.nbr_ea`t <= main->philo[i].nbr_ate) || main->data.nbr_eat == -1 ) \
         //  && time_diff(main->philo[i].start_meal) > main->data.time_die)
-          if (((main->philo[i].nbr_ate < main->data.nbr_eat)|| main->data.nbr_eat == -1) \
-         && time_diff(main->philo[i].start_meal) > main->data.time_die) // protect above If it eat already
+        if (((main->philo[i].nbr_ate < main->data.nbr_eat) || main->data.nbr_eat == -1) \
+        && time_diff(main->philo[i].start_meal) > main->data.time_die * 1000) // protect above If it eat already
         {
             pthread_mutex_lock(&main->data.print);
             if (main->data.check_state == NOTDIE)
             {
                 main->data.check_state = DIE;
-                time = current_time() - main->data.start_time;
-                printf(BBLU"%ld ms " reset, time);
+                time = current_time();
+                time = (time - main->data.start_time);
+                printf(BBLU "%lu ms " reset, time / 1000);
                 printf("Philo %d die\n", main->philo->id);
+                // printf(" --[%d] : [%p]\n" ,main->philo->id , &main->data.check_state);
                 // ft_print(main->philo , PDIE);
             }
-            pthread_mutex_unlock(&main->data.print);
-            break;
+            // pthread_mutex_unlock(&main->data.print);
+            return;
         }
-        usleep(10);
+        // usleep(10);
         i++;
         i = i % main->data.nbr_philo;
-    }    
+    }
 }

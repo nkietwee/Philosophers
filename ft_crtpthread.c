@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:34:31 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/18 22:29:24 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/19 01:10:30 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void    *routine(void *arg)
     
     main = (t_main *)arg;
     i = main->id_cur;//segfault ??
-    main->philo[i].start_meal = main->data.start_time; //??
+    main->philo[i].start_meal = main->data.start_time ; //??
     while (!main->data.check_state) // when it die // main->data.eat <= main->data.ate
     {
         if (ft_philoeat(&main->philo[i], main->fork) == EXIT_FAILURE)
@@ -88,6 +88,8 @@ int ft_crttheard(t_main *main)
         main->id_cur = i;
         if (pthread_create(&main->philo[i].th, NULL, &routine, main) == EXIT_FAILURE)
             return (EXIT_FAILURE);
+        // if (pthread_join(main->philo[i].th, NULL) == EXIT_FAILURE)
+        //     return (EXIT_FAILURE);
         if (pthread_detach(main->philo[i].th) == EXIT_FAILURE)
             return (EXIT_FAILURE);
         usleep (10);
@@ -96,10 +98,28 @@ int ft_crttheard(t_main *main)
         // if (main->id_cur >= main->data.nbr_philo && main->id_cur % 2 == 0) // start odd number
         if (i >= main->data.nbr_philo && i % 2 == 0) // start odd number
         {
-            usleep(50);
+            usleep(10);
            i = 1;
         }
     }
+    // i = 0;
+    // while (i < main->data.nbr_philo && main->data.nbr_philo > 100)
+    // {
+    //     if (pthread_join(main->philo[i].th, NULL) == EXIT_FAILURE)
+    //         return (EXIT_FAILURE);
+    //     // if (pthread_detach(main->philo[i].th) == EXIT_FAILURE)
+    //     //     return (EXIT_FAILURE);
+    //    i++; 
+    // }
+    //  i = 0;
+    // while (i < main->data.nbr_philo)
+    // {
+    //     // if (pthread_join(main->philo[i].th, NULL) == EXIT_FAILURE)
+    //     //     return (EXIT_FAILURE);
+    //     if (pthread_detach(main->philo[i].th) == EXIT_FAILURE)
+    //         return (EXIT_FAILURE);
+    //    i++; 
+    // }  
     return (EXIT_SUCCESS);
 }
 
