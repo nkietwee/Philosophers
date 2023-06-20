@@ -6,35 +6,30 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:48:39 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/19 01:20:34 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:19:21 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long current_time(void)
+long	current_time(void)
 {
-    struct timeval time;
+	struct timeval	time;
 
-    gettimeofday(&time, NULL);
-    // return((time.tv_usec / 1000) + (time.tv_sec * 1000)); //true
-    return ((time.tv_usec) + (time.tv_sec * 1000000)); // true
+	gettimeofday(&time, NULL);
+	return ((time.tv_usec / 1000) + (time.tv_sec * 1000));
 }
 
-int time_to_action(unsigned long int time_action, int *check_state)
+void	time_to_action(long time_action)
 {
-    unsigned long int start;
+	long	start;
 
-    // usleep(time_action);
-    start = current_time();
-    while (((current_time() - start < time_action * 1000))) // check_die
-        usleep(10);
-    // printf(URED"out\n" reset);
-    // usleep(time_action); It cann't use in case It die
-    return (*check_state);
+	start = current_time();
+	while ((current_time() - start < time_action))
+		usleep(50);
 }
 
-unsigned long int time_diff(unsigned long int time)
+long	time_diff(long time)
 {
-    return (current_time() - time);
+	return (current_time() - time);
 }

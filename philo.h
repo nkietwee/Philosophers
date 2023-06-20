@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:19:21 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/06/19 00:40:28 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:38:12 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,104 +14,88 @@
 # define PHILO_H
 
 # include <stdio.h>
-# include <unistd.h> //usleep
+# include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-#include "color.h"
-//enum is group data of constant
-enum error
+# include "color.h"
+
+enum e_printarg
 {
-    ERR_ARG
-    
+	PMYFORK,
+	PNOTMYFORK,
+	PEAT,
+	PSLEEP,
+	PTHINK,
+	PDIE,
 };
-
-enum printarg
+enum e_fork
 {
-    PMYFORK
-    ,PNOTMYFORK
-    ,PEAT
-    ,PSLEEP
-    ,PTHINK
-    ,PDIE
+	TAKE,
+	DROP
 };
-
-enum fork
+enum e_state
 {
-    TAKE
-    ,DROP   
+	NOTDIE,
+	DIE
 };
-
-enum state
+typedef struct s_data
 {
-    NOTDIE
-    ,DIE
-
-
-};
-
-typedef struct  s_data
-{
-    int     nbr_philo;
-    unsigned long int     time_die;
-    unsigned long int    time_eat;
-    unsigned long int     time_sleep;
-    int     nbr_eat;
-    int     check_state;
-    unsigned long int        start_time; //??
-    pthread_mutex_t print; // for lock print
-    // long    start_meal;
-
-}   t_data ;
+	int				nbr_philo;
+	long			time_die;
+	long			time_eat;
+	long			time_sleep;
+	int				nbr_eat;
+	int				check_state;
+	long			start_time;
+	pthread_mutex_t	print;
+}	t_data;
 
 typedef struct s_philo
 {
-    int         id; // start at 1 to nbr_philo
-    int         myfork;
-    int         notmyfork;
-    int         nbr_ate;
-    unsigned long int        start_meal; //last_meal
-    t_data      *data;
-    pthread_t   th;  // t_id 1 : 1 philo
-
-}   t_philo ;
+	int				id;
+	int				myfork;
+	int				notmyfork;
+	int				nbr_ate;
+	long			start_meal;
+	t_data			*data;
+	pthread_t		th;
+}	t_philo;
 
 typedef struct s_main
 {
-    int             id_cur;
-    t_data          data;
-    t_philo         *philo;
-    pthread_mutex_t *fork; // fork 1 : 1 philo
+	int				id_cur;
+	t_data			data;
+	t_philo			*philo;
+	pthread_mutex_t	*fork;
+}	t_main;
 
-} t_main ;
+int				ft_check(int ac, char **av);
+int				ft_checkarg(int ac);
+int				ft_checkformat(char **av);
+int				ft_isdigit(char c);
 
-int             ft_check(int ac, char **av);
-int             ft_checkarg(int ac);
-int             ft_checkformat(int ac, char **av);
-int             ft_isdigit(char c); //??
+int				ft_printerr(int mode);
+long			ft_atol(char *str);
 
+int				ft_init(t_main *main, int ac, char **av);
+void			ft_initdataphilo(t_data *data, int ac, char **av);
+pthread_mutex_t	*ft_initfork(int nbr_philo);
+t_philo			*ft_initphilo(t_data *data);
 
-int             ft_printerr(int mode);
-unsigned long int             ft_atol(char *str);
+int				ft_crttheard(t_main *main);
+void			ft_sleep_think(t_philo *philo);
 
-int             ft_init(t_main *main, int ac, char **av);
-void            ft_initdataphilo(t_data *data, int ac, char **av);
-// int             ft_initdataphilo(t_data *data, int ac, char **av);
-pthread_mutex_t *ft_initfork(int nbr_philo);
-t_philo         *ft_initphilo(t_data *data);
+void			ft_print(t_philo *philo, int mode);
 
+//time.c
+long			current_time(void);
+void			time_to_action(long time_action);
+long			time_diff(long time);
 
-int             ft_crttheard(t_main *main);
-int             ft_sleep_think(t_philo *philo);
+//check_die.c
+void			ft_checkdie(t_main *main);
 
-
-void            ft_print(t_philo *philo,int mode);
-
-long            current_time(void);
-int             time_to_action(unsigned long int time_action, int *check_state);
-unsigned long int            time_diff(unsigned long int time);
-
-void            ft_checkdie (t_main *main);
-
-void            ft_clear(t_main *main);
+//clear
+void			ft_clear(t_main *main);
 #endif
